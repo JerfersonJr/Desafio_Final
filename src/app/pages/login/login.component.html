@@ -1,0 +1,57 @@
+<div class="login-container">
+  <div class="carousel-section">
+    <div class="carousel-content">
+      <span class="tag-institucional">Valores Institucionais</span>
+      @for (valor of valores; track valor.titulo) {
+        @if (valores.indexOf(valor) === slideAtivo()) {
+          <div class="slide fade-in">
+            <h2>{{ valor.titulo }}</h2>
+            <p>{{ valor.desc }}</p>
+          </div>
+        }
+      }
+      <div class="indicators">
+        @for (item of valores; track $index) {
+          <span class="dot" [class.active]="$index === slideAtivo()"></span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-box">
+      <h1 class="logo">Check<span>System</span></h1>
+      <p class="subtitle">Controle de Recebimento de Suprimentos</p>
+      
+      <form (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <label>Usuário</label>
+          <input type="text" [(ngModel)]="usuario" name="usuario" placeholder="Ex: admin" required>
+        </div>
+
+        <div class="input-group">
+          <div class="label-wrapper">
+            <label>Senha</label>
+            <button type="button" class="btn-forgot" (click)="esqueciSenha()">Esqueceu o usuário ou a senha?</button>
+          </div>
+          <input type="password" [(ngModel)]="senha" name="senha" placeholder="••••••••" required>
+        </div>
+
+        @if (erroMensagem) {
+          <div class="alert-error">{{ erroMensagem }}</div>
+        }
+
+        <button type="submit" class="btn-login">Acessar Painel</button>
+      </form>
+
+      <footer class="lgpd-notice">
+        <p>
+          Ao acessar este sistema, você declara estar ciente e de acordo com as 
+          <strong>Políticas de Privacidade</strong> da empresa e os termos de conformidade com a 
+          <strong>LGPD</strong> para o tratamento de dados institucionais.
+        </p>
+        <p class="copyright-text">© 2026 CheckSystem. Todos os direitos reservados.</p>
+      </footer>
+    </div>
+  </div>
+</div>

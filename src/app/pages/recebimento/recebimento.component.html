@@ -1,0 +1,84 @@
+<div class="dashboard">
+  <header class="header">
+    <h2>Check<span>System</span> | Recepção e Conferência</h2>
+    
+    <div class="user-profile">
+      <span class="user-badge">👤 Operador: <strong>{{ nomeOperador() }}</strong></span>
+      <button (click)="logout()" class="btn-logout">Sair do Sistema</button>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="search-box">
+      <h3>Agendamentos de Carga para Hoje</h3>
+      <input type="text" [(ngModel)]="filtroPesquisa" placeholder="Filtrar por Razão Social ou CNPJ...">
+      
+      <div class="suppliers-grid">
+        @for (f of fornecedoresFiltrados(); track f.id) {
+          <div class="supplier-card" 
+               [class.selected]="fornecedorSelecionado()?.id === f.id"
+               (click)="selecionarFornecedor(f)">
+            <div class="card-icon">🚚</div>
+            <div class="card-info">
+              <h4>{{ f.nome }}</h4>
+              <p>CNPJ: {{ f.cnpj }}</p>
+            </div>
+          </div>
+        } @empty {
+          <p class="no-results">Nenhum fornecedor localizado com este filtro.</p>
+        }
+      </div>
+    </section>
+
+    @if (fornecedorSelecionado(); as forn) {
+      <section class="checking-panel fade-in">
+        <div class="panel-header">
+          <h3>Conferindo Itens de: {{ forn.nome }}</h3>
+        </div>
+
+        <div class="table-container">
+          <table class="responsive-table">
+            <thead>
+              <tr>
+                <th>Conferido?</th>
+                <th>Insumo Hospitalar</th>
+                <th>Saldo Esperado</th>
+                <th>Entrega Parcial?</th>
+                <th>Qtd Recebida</th>
+                <th>Não Conformidade?</th>
+                <th>Motivo / Ocorrência</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of forn.itens; track item.id) {
+                @if (item.qtdPendente > 0) {
+                  <tr>
+                    <td><input type="checkbox" [(ngModel)]="item.entregue" class="chk-box"></td>
+                    <td><strong>{{ item.nome }}</strong></td>
+                    <td><span class="badge-qty">{{ item.qtdPendente }} un</span></td>
+                    <td><input type="checkbox" [(ngModel)]="item.parcial" [disabled]="!item.entregue"></td>
+                    <td>
+                      <input type="number" [(ngModel)]="item.qtdRecebida" [disabled]="!item.parcial || !item.entregue" min="1" [max]="item.qtdPendente" class="input-qty">
+                    </td>
+                    <td><input type="checkbox" [(ngModel)]="item.naoConformidade" class="chk-red"></td>
+                    <td>
+                      <input type="text" [(ngModel)]="item.motivoNaoConformidade" [disabled]="!item.naoConformidade" placeholder="Ex: Item trocado / Avariado" class="input-text">
+                    </td>
+                  </tr>
+                }
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel-actions">
+          <button class="btn-cancel" (click)="fornecedorSelecionado.set(null)">Fechar</button>
+          <button class="btn-save" (click)="salvar()">Salvar Recebimento</button>
+        </div>
+      </section>
+    }
+  </main>
+  <footer class="dashboard-footer">
+    <p>© 2026 CheckSystem. Todos os direitos reservados.</p>
+  </footer>
+</div>

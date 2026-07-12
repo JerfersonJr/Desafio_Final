@@ -1,0 +1,280 @@
+:host {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+}
+
+.login-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row; 
+}
+
+.carousel-section {
+  flex: 1;
+  background: linear-gradient(135deg, #005088 0%, #11CAA0 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.carousel-content {
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+}
+
+.tag-institucional {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.slide h2 {
+  font-size: 2.2rem;
+  margin: 25px 0 10px 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.slide p {
+  font-size: 1.05rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.indicators {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: white;
+  width: 24px;
+  border-radius: 10px;
+}
+
+.form-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 360px;
+}
+
+.logo {
+  font-size: 2.6rem;
+  color: #005088;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo span {
+  color: #11CAA0;
+}
+
+.subtitle {
+  color: #64748b;
+  margin-bottom: 35px;
+  margin-top: 5px;
+  font-size: 1rem;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: all 0.2s;
+  background-color: #f8fafc;
+}
+
+.input-group input:focus {
+  border-color: #11CAA0;
+  background-color: white;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(17, 202, 160, 0.15);
+}
+
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  background: #005088;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 10px;
+}
+
+.btn-login:hover {
+  background: #003d66;
+}
+
+.alert-error {
+  background: #fee2e2;
+  color: #ef4444;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  border-left: 4px solid #ef4444;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 992px) {
+  .slide h2 { font-size: 1.8rem; }
+  .slide p { font-size: 0.95rem; }
+  .logo { font-size: 2.2rem; }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column; 
+    overflow-y: auto;       
+  }
+
+  .carousel-section {
+    flex: none;
+    min-height: 220px;    
+    padding: 30px 20px;
+  }
+
+  .slide h2 { 
+    font-size: 1.5rem; 
+    margin: 15px 0 5px 0; 
+  }
+
+  .slide p { 
+    font-size: 0.9rem; 
+  }
+
+  .indicators { 
+    margin-top: 15px; 
+  }
+
+  .form-section {
+    flex: 1;
+    padding: 30px 20px;
+    align-items: flex-start; 
+  }
+
+  .form-box {
+    max-width: 100%;      
+  }
+  
+  .subtitle {
+    margin-bottom: 20px;
+  }
+}
+
+.label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.label-wrapper label {
+  margin-bottom: 0 !important; 
+}
+
+.btn-forgot {
+  background: none;
+  border: none;
+  color: #005088;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.btn-forgot:hover {
+  color: #11CAA0;
+  text-decoration: underline;
+}
+
+/* Caixa de Aviso da LGPD */
+.lgpd-notice {
+  margin-top: 35px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 15px;
+}
+
+.lgpd-notice p {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+}
+
+.lgpd-notice strong {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.copyright-text {
+  margin-top: 10px !important;
+  font-size: 0.7rem !important;
+  opacity: 0.7;
+}
