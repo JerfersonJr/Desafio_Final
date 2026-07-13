@@ -278,3 +278,13 @@
   font-size: 0.7rem !important;
   opacity: 0.7;
 }
+
+.lgpd-notice a {
+  color: inherit;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.lgpd-notice a:hover {
+  color: #11CAA0; 
+}
